@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mucha Pages</title>
+<style>
+:root{--bg:#f5f5f7;--panel:#fff;--text:#1d1d1f;--muted:#86868b;--line:#e7e7eb;--accent:#3478f6;--soft:#edf3ff;--shadow:0 8px 30px #2020300d}
+[data-theme="dark"]{--bg:#171719;--panel:#242427;--text:#f5f5f7;--muted:#a1a1a6;--line:#3a3a3e;--accent:#78a9ff;--soft:#29364d;--shadow:0 8px 30px #0003}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:14px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+button,input,select{font:inherit}button{cursor:pointer;border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:9px;padding:8px 11px}button:hover{background:var(--soft);border-color:#b8cdf7}.primary{background:var(--accent);color:white;border-color:var(--accent)}.primary:hover{background:#2466dc;color:white}
+.topbar{height:62px;background:var(--panel);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 22px;position:sticky;top:0;z-index:5}
+.brand{display:flex;align-items:center;gap:10px;font-size:19px;font-weight:700;letter-spacing:-.5px}.logo{width:32px;height:32px;border-radius:10px;background:linear-gradient(145deg,#6ea4ff,#3568d4);display:grid;place-items:center;color:white;font-weight:800;box-shadow:0 3px 8px #3478f633}
+.top-actions{display:flex;align-items:center;gap:8px}.status{font-size:12px;color:var(--muted);margin-right:8px}
+.shell{display:grid;grid-template-columns:245px 1fr;min-height:calc(100vh - 62px)}aside{background:var(--panel);border-right:1px solid var(--line);padding:22px 15px}.side-title{font-size:11px;color:var(--muted);font-weight:700;letter-spacing:1px;padding:12px 10px 7px}.nav{display:flex;align-items:center;gap:11px;padding:10px;border-radius:9px;color:var(--muted);cursor:pointer}.nav.active,.nav:hover{background:var(--soft);color:var(--accent)}.nav .ico{width:20px;text-align:center;font-size:17px}.side-bottom{margin-top:35px;border-top:1px solid var(--line);padding-top:15px}
+main{padding:34px clamp(20px,4vw,58px);min-width:0}.welcome{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:26px;gap:16px}.eyebrow{color:var(--accent);font-weight:650;font-size:12px;letter-spacing:.7px;text-transform:uppercase}h1{font-size:30px;letter-spacing:-1px;margin:7px 0 5px}.sub{color:var(--muted);margin:0}.actions{display:flex;gap:8px;flex-wrap:wrap}
+.templates{display:grid;grid-template-columns:repeat(4,minmax(130px,1fr));gap:15px;margin:20px 0 34px}.template{background:var(--panel);border:1px solid var(--line);border-radius:15px;padding:16px;text-align:left;box-shadow:var(--shadow);transition:.15s}.template:hover{transform:translateY(-2px)}.template .preview{height:95px;border-radius:9px;background:linear-gradient(135deg,#f8f9fb,#e9edf5);display:flex;align-items:center;justify-content:center;color:#6f7c91;font-size:32px;margin-bottom:13px}.template strong{display:block;margin-bottom:4px}.template small{color:var(--muted)}
+.section-head{display:flex;justify-content:space-between;align-items:center;margin:15px 0}.section-head h2{font-size:18px;margin:0;letter-spacing:-.3px}.doc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:15px}.doc-card{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:14px;cursor:pointer;box-shadow:var(--shadow)}.doc-card:hover{border-color:var(--accent)}.doc-thumb{height:115px;border:1px solid var(--line);border-radius:7px;background:var(--panel);padding:15px;overflow:hidden;margin-bottom:12px}.doc-thumb b{display:block;font:700 13px Georgia;margin-bottom:8px}.doc-thumb i{display:block;height:4px;background:var(--line);margin:7px 0;border-radius:3px}.doc-meta{color:var(--muted);font-size:12px;margin-top:6px}.empty{color:var(--muted);padding:25px;border:1px dashed var(--line);border-radius:12px;text-align:center}
+.editor{display:none;position:fixed;inset:62px 0 0 0;background:var(--bg);z-index:4;flex-direction:column}.editor.open{display:flex}.editor-head{background:var(--panel);border-bottom:1px solid var(--line);padding:10px 20px;display:flex;align-items:center;gap:12px}.doc-title{border:0;background:transparent;font-size:16px;font-weight:650;outline:none;width:min(380px,35vw);color:var(--text)}.toolbar{background:var(--panel);border-bottom:1px solid var(--line);padding:9px 16px;display:flex;gap:6px;align-items:center;flex-wrap:wrap}.toolbar button{min-width:34px;padding:7px}.toolbar select{border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--text);padding:7px}.divider{height:25px;width:1px;background:var(--line);margin:0 4px}.editor-scroll{overflow:auto;flex:1;padding:32px 15px 70px}.paper{width:min(816px,100%);min-height:1056px;margin:0 auto;background:white;color:#222;padding:86px 92px;box-shadow:0 4px 25px #00000012;outline:none;font:16px/1.7 Georgia,serif;overflow-wrap:anywhere}.paper:focus{outline:none}.paper h1,.paper h2,.paper h3{font-family:Georgia,serif;color:#222}.paper p{margin:0 0 1em}.paper:empty:before{content:"Začni psát svůj příběh…";color:#aaa}.editor-footer{height:34px;background:var(--panel);border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 18px;color:var(--muted);font-size:12px}
+.modal-back{display:none;position:fixed;inset:0;background:#0006;z-index:10;align-items:center;justify-content:center;padding:20px}.modal-back.show{display:flex}.modal{background:var(--panel);border:1px solid var(--line);border-radius:17px;padding:22px;width:min(420px,100%);box-shadow:0 20px 60px #0003}.modal h2{margin:0 0 15px}.modal input,.modal select{width:100%;padding:11px;border:1px solid var(--line);border-radius:9px;background:var(--bg);color:var(--text);margin:7px 0 15px}.modal-actions{display:flex;justify-content:flex-end;gap:8px}
+@media(max-width:760px){.shell{grid-template-columns:1fr}aside{display:none}main{padding:24px 16px}.templates{grid-template-columns:repeat(2,1fr)}.welcome{align-items:flex-start;flex-direction:column}.paper{padding:42px 28px;min-height:800px}.editor-head{padding:9px}.status{display:none}.topbar{padding:0 12px}}
+@media print{body{background:white}.topbar,.shell,.editor-head,.toolbar,.editor-footer{display:none!important}.editor{display:block!important;position:static}.editor-scroll{padding:0;overflow:visible}.paper{box-shadow:none;margin:0;width:100%;min-height:0;padding:0 1cm;color:#111}.paper *{color:#111!important}}
+</style>
+</head>
+<body>
+<header class="topbar">
+ <div class="brand"><div class="logo">M</div>Mucha Pages</div>
+ <div class="top-actions"><span class="status" id="globalStatus">Všechny změny se ukládají automaticky</span><button id="themeBtn" title="Přepnout vzhled">☾</button><button class="primary" onclick="newDocument()">＋ Nový dokument</button></div>
+</header>
+<div class="shell" id="home">
+ <aside>
+  <div class="side-title">KNIHOVNA</div>
+  <div class="nav active" data-filter="all"><span class="ico">▦</span> Všechny dokumenty</div>
+  <div class="nav" data-filter="document"><span class="ico">▤</span> Dokumenty</div>
+  <div class="nav" data-filter="book"><span class="ico">▣</span> Moje knihy</div>
+  <div class="nav" data-filter="note"><span class="ico">☷</span> Poznámky</div>
+  <div class="side-bottom"><div class="side-title">MŮJ PROSTOR</div><div class="nav" onclick="showAbout()"><span class="ico">ⓘ</span> O aplikaci</div><div class="nav" onclick="exportBackup()"><span class="ico">⇩</span> Záloha dokumentů</div></div>
+ </aside>
+ <main>
+  <div class="welcome"><div><div class="eyebrow">Tvůj kreativní prostor</div><h1 id="greeting">Dobré odpoledne.</h1><p class="sub">Na každém dobrém příběhu záleží. Začni tvořit.</p></div><div class="actions"><button onclick="newDocument('note')">＋ Poznámka</button><button class="primary" onclick="newDocument('book')">＋ Vytvořit knihu</button></div></div>
+  <div class="section-head"><h2>Začni s novým projektem</h2></div>
+  <div class="templates">
+   <button class="template" onclick="newDocument('document')"><div class="preview">📄</div><strong>Prázdný dokument</strong><small>Začni od čistého listu</small></button>
+   <button class="template" onclick="newDocument('book')"><div class="preview">📖</div><strong>Kniha</strong><small>Kapitoly a vlastní příběh</small></button>
+   <button class="template" onclick="newDocument('note')"><div class="preview">📝</div><strong>Rychlá poznámka</strong><small>Zachyť svůj nápad</small></button>
+   <button class="template" onclick="newDocument('school')"><div class="preview">🎓</div><strong>Školní práce</strong><small>Přehledná struktura</small></button>
+  </div>
+  <div class="section-head"><h2>Poslední dokumenty</h2><button onclick="exportBackup()">Zálohovat vše ↗</button></div>
+  <div class="doc-grid" id="docGrid"></div>
+ </main>
+</div>
+<section class="editor" id="editor">
+ <div class="editor-head"><button onclick="closeEditor()">← Zpět</button><input class="doc-title" id="docTitle" value="Nepojmenovaný dokument" aria-label="Název dokumentu"><span class="status" id="saveStatus">Uloženo</span><div style="flex:1"></div><button onclick="exportHTML()">Export HTML</button><button onclick="exportText()">Export TXT</button><button class="primary" onclick="window.print()">Export PDF ⤓</button>
+ </div>
+ <div class="toolbar">
+  <select id="blockFormat" title="Styl textu"><option value="p">Normální text</option><option value="h1">Nadpis 1</option><option value="h2">Nadpis 2</option><option value="h3">Nadpis 3</option><option value="blockquote">Citace</option></select>
+  <select id="fontName" title="Písmo"><option>Georgia</option><option>Arial</option><option>Verdana</option><option>Times New Roman</option><option>Courier New</option></select>
+  <select id="fontSize" title="Velikost"><option value="3">12</option><option value="4" selected>14</option><option value="5">18</option><option value="6">24</option><option value="7">32</option></select>
+  <span class="divider"></span>
+  <button onclick="cmd('bold')" title="Tučně"><b>B</b></button><button onclick="cmd('italic')" title="Kurzíva"><i>I</i></button><button onclick="cmd('underline')" title="Podtržení"><u>U</u></button><button onclick="cmd('strikeThrough')" title="Přeškrtnutí"><s>S</s></button>
+  <span class="divider"></span>
+  <button onclick="cmd('justifyLeft')" title="Zarovnat vlevo">☰</button><button onclick="cmd('justifyCenter')" title="Na střed">≡</button><button onclick="cmd('justifyRight')" title="Zarovnat vpravo">☷</button>
+  <span class="divider"></span>
+  <button onclick="cmd('insertUnorderedList')" title="Odrážky">• Seznam</button><button onclick="cmd('insertOrderedList')" title="Číslování">1. Seznam</button><button onclick="insertLink()" title="Vložit odkaz">🔗</button><button onclick="document.getElementById('imageInput').click()" title="Vložit obrázek">▧</button><input type="file" id="imageInput" accept="image/*" hidden onchange="insertImage(event)">
+  <span class="divider"></span><button onclick="cmd('undo')" title="Zpět">↶</button><button onclick="cmd('redo')" title="Znovu">↷</button>
+ </div>
+ <div class="editor-scroll"><article class="paper" id="paper" contenteditable="true" spellcheck="true"></article></div>
+ <div class="editor-footer"><span id="wordCount">0 slov · 0 znaků</span><span id="pageInfo">Stránka 1</span><span>Čeština · Mucha Pages</span></div>
+</section>
+<div class="modal-back" id="modalBack"><div class="modal"><h2 id="modalTitle">Nový dokument</h2><label for="newTitle">Název</label><input id="newTitle" placeholder="Například Poslední alibi"><label for="newType">Typ projektu</label><select id="newType"><option value="document">Dokument</option><option value="book">Kniha</option><option value="note">Poznámka</option><option value="school">Školní práce</option></select><div class="modal-actions"><button onclick="hideModal()">Zrušit</button><button class="primary" onclick="createDocument()">Vytvořit</button></div></div></div>
+<script>
+const KEY='mucha-pages-documents-v1', THEME='mucha-pages-theme';
+let docs=[],currentId=null,saveTimer=null,currentFilter='all';
+const $=id=>document.getElementById(id);
+function load(){try{docs=JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){docs=[]}if(!Array.isArray(docs))docs=[];const t=localStorage.getItem(THEME)||'light';document.documentElement.dataset.theme=t;$('themeBtn').textContent=t==='dark'?'☀':'☾';renderDocs();setGreeting()}
+function persist(){try{localStorage.setItem(KEY,JSON.stringify(docs));$('saveStatus').textContent='Uloženo';$('globalStatus').textContent='Všechny změny jsou uloženy'}catch(e){$('saveStatus').textContent='Nelze uložit – málo místa';}}
+function setGreeting(){let h=new Date().getHours();$('greeting').textContent=h<11?'Dobré ráno.':h<18?'Dobré odpoledne.':'Dobrý večer.'}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function renderDocs(){let list=docs.filter(d=>currentFilter==='all'||(currentFilter==='document'&&['document','school'].includes(d.type))||d.type===currentFilter).sort((a,b)=>b.updated-a);$('docGrid').innerHTML=list.length?list.map(d=>`<div class="doc-card" onclick="openDocument('${d.id}')"><div class="doc-thumb"><b>${esc(d.title||'Bez názvu')}</b><i style="width:90%"></i><i style="width:76%"></i><i style="width:83%"></i><i style="width:55%"></i></div><strong>${d.type==='book'?'📖':d.type==='note'?'📝':'📄'} ${esc(d.title||'Bez názvu')}</strong><div class="doc-meta">${typeName(d.type)} · ${new Date(d.updated).toLocaleDateString('cs-CZ')}</div></div>`).join(''):'<div class="empty">Zatím tu nic není. Vytvoř svůj první dokument. ✨</div>'}
+function typeName(t){return ({book:'Kniha',note:'Poznámka',school:'Školní práce',document:'Dokument'})[t]||'Dokument'}
+document.querySelectorAll('.nav[data-filter]').forEach(n=>n.addEventListener('click',()=>{document.querySelectorAll('.nav[data-filter]').forEach(x=>x.classList.remove('active'));n.classList.add('active');currentFilter=n.dataset.filter;renderDocs()}));
+function newDocument(type='document'){$('newType').value=type;$('newTitle').value=type==='book'?'Moje nová kniha':type==='note'?'Nová poznámka':type==='school'?'Nová školní práce':'Nepojmenovaný dokument';$('modalBack').classList.add('show');$('newTitle').focus()}
+function hideModal(){$('modalBack').classList.remove('show')}
+function createDocument(){let type=$('newType').value,title=$('newTitle').value.trim()||'Nepojmenovaný dokument';let intro=type==='book'?'<h1>'+esc(title)+'</h1><p><em>Autor: </em></p><h2>Obsah</h2><p>Kapitola 1</p><h2>Kapitola 1</h2><p>Začni psát svůj příběh…</p>':type==='school'?'<h1>'+esc(title)+'</h1><p>Jméno: </p><p>Datum: </p><h2>Úvod</h2><p>Začni psát…</p><h2>Hlavní část</h2><p></p><h2>Závěr</h2><p></p>':'<h1>'+esc(title)+'</h1><p><br></p>';let d={id:crypto.randomUUID?crypto.randomUUID():String(Date.now()),title,type,content:intro,updated:Date.now()};docs.push(d);persist();hideModal();openDocument(d.id);renderDocs()}
+function openDocument(id){let d=docs.find(x=>x.id===id);if(!d)return;currentId=id;$('docTitle').value=d.title;$('paper').innerHTML=d.content;$('home').style.display='none';$('editor').classList.add('open');updateCounts();$('paper').focus()}
+function closeEditor(){saveNow();$('editor').classList.remove('open');$('home').style.display='grid';renderDocs();currentId=null}
+function saveNow(){if(!currentId)return;let d=docs.find(x=>x.id===currentId);if(!d)return;d.title=$('docTitle').value.trim()||'Nepojmenovaný dokument';d.content=$('paper').innerHTML;d.updated=Date.now();persist();renderDocs()}
+function scheduleSave(){ $('saveStatus').textContent='Ukládání…';$('globalStatus').textContent='Ukládání změn…';clearTimeout(saveTimer);saveTimer=setTimeout(saveNow,450);updateCounts()}
+$('paper').addEventListener('input',scheduleSave);$('docTitle').addEventListener('input',scheduleSave);
+function cmd(c,v=null){$('paper').focus();document.execCommand(c,false,v);scheduleSave()}
+$('blockFormat').addEventListener('change',e=>{cmd('formatBlock','<'+e.target.value+'>')});
+$('fontName').addEventListener('change',e=>cmd('fontName',e.target.value));
+$('fontSize').addEventListener('change',e=>cmd('fontSize',e.target.value));
+function insertLink(){let url=prompt('Vlož odkaz (https://…)');if(url){if(!/^https?:\/\//i.test(url))url='https://'+url;cmd('createLink',url)}}
+function insertImage(e){let f=e.target.files[0];if(!f)return;if(f.size>2*1024*1024){alert('Obrázek je příliš velký. Vyber soubor do 2 MB.');e.target.value='';return}let r=new FileReader();r.onload=()=>{cmd('insertImage',r.result);scheduleSave()};r.readAsDataURL(f);e.target.value=''}
+function updateCounts(){let txt=$('paper').innerText||'',words=txt.trim()?txt.trim().split(/\s+/).length:0;$('wordCount').textContent=words+' slov · '+txt.length+' znaků';$('pageInfo').textContent='Přibližně '+Math.max(1,Math.ceil(txt.length/2600))+' str.'}
+function download(name,content,mime){let blob=new Blob([content],{type:mime});let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
+function safeName(s){return(s||'dokument').replace(/[\\/:*?"<>|]/g,'-').trim()||'dokument'}
+function exportHTML(){saveNow();download(safeName($('docTitle').value)+'.html','<!doctype html><html lang="cs"><meta charset="utf-8"><title>'+esc($('docTitle').value)+'</title><body>'+ $('paper').innerHTML+'</body></html>','text/html;charset=utf-8')}
+function exportText(){saveNow();download(safeName($('docTitle').value)+'.txt',$('paper').innerText,'text/plain;charset=utf-8')}
+function exportBackup(){download('mucha-pages-zaloha.json',JSON.stringify(docs,null,2),'application/json')}
+function showAbout(){alert('Mucha Pages\\nTvůj prostor pro psaní knih, dokumentů a poznámek.\\n\\nDokumenty se ukládají do místního úložiště tohoto prohlížeče. Nezapomeň si občas stáhnout zálohu.')}
+$('themeBtn').addEventListener('click',()=>{let t=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=t;localStorage.setItem(THEME,t);$('themeBtn').textContent=t==='dark'?'☀':'☾'});
+window.addEventListener('beforeunload',saveNow);load();
+</script>
+</body></html>
